@@ -1,0 +1,4 @@
+type Mutation {
+  getKey(email: String!): [Error!]
+  changePassword(password: String!, id: String!): [Error!]
+}

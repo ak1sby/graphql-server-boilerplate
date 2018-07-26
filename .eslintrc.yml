@@ -1,0 +1,21 @@
+---
+
+plugins:
+  - jest
+  - babel
+
+env:
+  node: true
+  jest: true
+
+parser: babel-eslint
+
+extends:
+  - 'airbnb-base'
+  - 'prettier'
+  - 'plugin:jest/recommended'
+
+rules:
+  no-console: 0
+  import/no-dynamic-require: "off"
+  import/prefer-default-export: "off"

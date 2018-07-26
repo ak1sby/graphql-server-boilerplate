@@ -1,0 +1,14 @@
+{
+  "ignore": ["node_modules", "*.test.js", "fixtures/*"],
+  "env": {
+    "NODE_ENV": "development",
+    "BABEL_DISABLE_CACHE": 1,
+    "PORT": 4000,
+    "HOST": "http://localhost"
+  },
+  "execMap": {
+    "js": "babel-node"
+  },
+  "ext": ".js,.json,.gql",
+  "watch": "./"
+}

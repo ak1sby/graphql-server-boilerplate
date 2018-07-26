@@ -1,0 +1,68 @@
+{
+  "name": "graphql-server-boilerplate",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "author": {
+    "name": "akis",
+    "email": "ak1s@mail.ru"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-jest": "^23.4.0",
+    "babel-plugin-import-graphql": "^2.6.2",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-runtime": "*",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "debug": "^3.1.0",
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jest": "^21.18.0",
+    "jest": "^23",
+    "jest-cli": "^23.4.1",
+    "nodemon": "^1.18.3"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-redis": "^3.3.3",
+    "dotenv": "^6.0.0",
+    "express-rate-limit": "^2.11.0",
+    "express-session": "^1.15.6",
+    "faker": "^4.1.0",
+    "glob": "^7.1.2",
+    "graphql": "^0.13.2",
+    "graphql-request": "^1.6.0",
+    "graphql-tools": "^3.0.5",
+    "graphql-yoga": "^1.14.12",
+    "ioredis": "^3.2.2",
+    "merge-graphql-schemas": "^1.5.3",
+    "pg": "^7.4.3",
+    "rate-limit-redis": "^1.5.0",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
+    "sparkpost": "^2.1.2",
+    "typeorm": "^0.2.0",
+    "uuid": "^3.3.2",
+    "yup": "^0.26.0"
+  },
+  "scripts": {
+    "babel-node": "babel-node",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "eslint": "eslint",
+    "start": "nodemon --exec babel-node src/index.js",
+    "test": "NODE_ENV=test jest --forceExit --detectOpenHandles"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/__tests__/utils/*"
+    ]
+  }
+}

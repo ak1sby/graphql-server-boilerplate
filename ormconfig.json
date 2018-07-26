@@ -1,0 +1,41 @@
+[
+  {
+    "name": "development",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "ak1s",
+    "password": "123",
+    "database": "graphQl",
+    "synchronize": true,
+    "logging": false,
+    "entities": ["src/entity/**/*.js"],
+    "migrations": ["src/migration/**/*.js"],
+    "subscribers": ["src/subscriber/**/*.js"],
+    "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+    }
+  },
+  {
+    "name": "test",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "ak1s",
+    "password": "123",
+    "database": "graphQl-test",
+    "dropSchema": true,
+    "synchronize": true,
+    "logging": false,
+    "entities": ["src/entity/**/*.js"],
+    "migrations": ["src/migration/**/*.js"],
+    "subscribers": ["src/subscriber/**/*.js"],
+    "cli": {
+      "entitiesDir": "src/entity",
+      "migrationsDir": "src/migration",
+      "subscribersDir": "src/subscriber"
+    }
+  }
+]

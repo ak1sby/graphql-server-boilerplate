@@ -1,0 +1,4 @@
+type Mutation {
+  confirmEmail(id: String!): [Error!]
+  register(email: String!, password: String!): [Error!]
+}
