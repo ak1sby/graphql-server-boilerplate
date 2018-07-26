@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ak1sby/graphql-server-boilerplate.svg?branch=master)](https://travis-ci.org/ak1sby/graphql-server-boilerplate)
+
 # graphql-server-boilerplate
 
 - Register - Send email with confirmation key
