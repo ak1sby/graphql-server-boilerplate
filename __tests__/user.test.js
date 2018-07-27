@@ -181,7 +181,7 @@ describe('user', () => {
 
     const response2 = await client.self();
 
-    expect(response2.data.self).toBeNull();
+    expect(response2.data).toEqual({ self: null });
   });
 
   test('logout: multiple sessions', async () => {
@@ -216,7 +216,7 @@ describe('user', () => {
 
     const res2Client2 = await session2.self();
 
-    expect(res2Client2.data.self).toBeNull();
+    expect(res2Client2.data).toEqual({ self: null });
   });
 
   test('getKey: email correct/invalid', async () => {
@@ -261,12 +261,12 @@ describe('user', () => {
       confirmed: true
     }).save();
 
-    const id = v4();
-    const key = `${changePasswordPrefix}${id}`;
+    const key = v4();
+    const keyWithPrefix = `${changePasswordPrefix}${key}`;
 
-    await redis.set(key, user.id, 'ex', 1);
+    await redis.set(keyWithPrefix, user.id, 'ex', 1);
 
-    const response = await client.changePassword(newPassword, id);
+    const response = await client.changePassword(newPassword, key);
 
     expect(response.data).toEqual({ changePassword: null });
 

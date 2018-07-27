@@ -1,4 +1,3 @@
-import { v4 } from 'uuid';
 import bcrypt from 'bcryptjs';
 
 import dropAllUserSessions from '../../../utils/dropAllUserSessions';
@@ -9,13 +8,13 @@ import sendEmail from '../../../utils/sendEmail';
 import { isProduction } from '../../../../config';
 import errorMess from '../../../errorMess';
 import schema from '../../../yupSchemas';
+import createKey from '../../../utils/createKey';
 
 export const resolvers = {
   Mutation: {
     getKey: async (_, { email }, { redis }) => {
       const user = await User.findOne({ where: { email } });
       const AlreadySend = await redis.get(`${changePasswordPrefix}${email}`);
-
       if (!user) {
         return [
           {
@@ -36,19 +35,17 @@ export const resolvers = {
 
       await dropAllUserSessions(user.id, redis);
 
-      const id = v4();
-      await redis.set(`${changePasswordPrefix}${id}`, user.id, 'ex', 60 * 20);
-      await redis.set(`${changePasswordPrefix}${email}`, true, 'ex', 60 * 20);
+      const key = await createKey(email, user.id, redis);
 
       if (isProduction) {
-        sendEmail(email, id);
+        sendEmail(email, key);
       }
-
+      console.log(key);
       return null;
     },
-    changePassword: async (_, { password, id }, { redis }) => {
-      const key = `${changePasswordPrefix}${id}`;
-      const userId = await redis.get(key);
+    changePassword: async (_, { password, key }, { redis }) => {
+      const keyWithPrefix = `${changePasswordPrefix}${key}`;
+      const userId = await redis.get(keyWithPrefix);
 
       if (!userId) {
         return [
@@ -70,11 +67,12 @@ export const resolvers = {
       await User.update(
         { id: userId },
         {
-          password: hashedPassword
+          password: hashedPassword,
+          locked: false
         }
       );
 
-      await redis.del(key);
+      await redis.del(keyWithPrefix);
 
       return null;
     }

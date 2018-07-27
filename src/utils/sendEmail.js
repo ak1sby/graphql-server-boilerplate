@@ -5,10 +5,9 @@ const client = new SparkPost(sparkpostKey);
 
 export default async (
   recipient,
-  key,
+  text = 'put some text to sendMail func',
   from = 'testing@sparkpostbox.com',
-  subject,
-  text = 'test mail'
+  subject
 ) => {
   await client.transmissions.send({
     options: {
@@ -20,7 +19,6 @@ export default async (
       html: `<html>
         <body>
         <p>${text}</p>
-        <p>Use this key:${key}</p>
         </body>
         </html>`
     },

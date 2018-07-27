@@ -8,5 +8,8 @@ export default {
   confirmEmailError: 'please confirm your email',
   expiredKeyError: 'key has expired',
   userNotFoundError: 'user not found with that email',
-  keyAlreadySend: 'Already Send'
+  keyAlreadySend: 'Already Send',
+  passwordWrongTooManyTimes: "You've entered the wrong password too many times",
+  UserAlreadyLogout: 'User already logout',
+  accLocked: 'Account is locked'
 };

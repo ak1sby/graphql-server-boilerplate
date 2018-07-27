@@ -64,7 +64,10 @@ class TestClient {
       body: {
         query: `
         mutation {
-          logout
+          logout {
+            path
+            message
+          }
         }
         `
       }
@@ -87,13 +90,13 @@ class TestClient {
     });
   }
 
-  async changePassword(password, id) {
+  async changePassword(password, key) {
     return request.post(this.url, {
       ...this.options,
       body: {
         query: `
         mutation {
-          changePassword(id: "${id}", password: "${password}") {
+          changePassword(key: "${key}", password: "${password}") {
             path
             message
           }

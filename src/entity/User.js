@@ -17,6 +17,8 @@ export default class User extends BaseEntity {
 
   @Column('bool') confirmed = false;
 
+  @Column('bool') locked = false;
+
   @BeforeInsert()
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);
